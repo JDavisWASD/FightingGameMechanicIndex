@@ -154,6 +154,16 @@
 
             <div id="edit_game" class="subTabContent">
                 <h2>Edit Game</h2>
+                <select class="gameOption">
+                    {% for game in games %}
+                        <option>{{ game['name'] }}</option>
+                    {% endfor %}
+                </select>
+                <div id="gameInfo">
+                    {% for game in games %}
+                        <p id="{{ game['name'] }}">Displaying Info For: {{ game['name'] }}</p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
 

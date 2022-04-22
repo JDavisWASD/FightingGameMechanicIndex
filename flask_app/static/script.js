@@ -29,3 +29,7 @@ function openSubTab(event, tabID) {
     document.getElementById(tabID).style.display = 'block';
     event.currentTarget.className += ' active';
 }
+
+document.getElementsByClassName('gameOption').addEventListener('change', function() {
+    
+})

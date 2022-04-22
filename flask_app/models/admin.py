@@ -28,12 +28,12 @@ class Admin:
         return False
 
 #Set Methods -------------------------------------------------------------------
-#    @classmethod
-#    def insert(cls, data):
-#        query = 'INSERT INTO admins (username, email, password, create_time, ' \
-#            'update_time) VALUES (%(username)s, %(email)s, %(password)s, ' \
-#            'NOW(), NOW());'
-#        return connectToMySQL(cls.db).query_db(query, data)
+    @classmethod
+    def insert(cls, data):
+        query = 'INSERT INTO admins (username, email, password, create_time, ' \
+            'update_time) VALUES (%(username)s, %(email)s, %(password)s, ' \
+            'NOW(), NOW());'
+        return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
     def update(cls, data):

@@ -2,6 +2,7 @@ from flask import flash, redirect, request, render_template, session
 from flask_app import app
 from flask_app.models.admin import Admin
 from flask_app.models.category import Category
+from flask_app.models.game import Game
 from flask_app.models.mechanic import Mechanic
 from flask_bcrypt import Bcrypt
 
@@ -29,19 +30,20 @@ def dashboard():
     if 'user_id' not in session:
         return redirect('/')
     categories = Category.get_all()
+    games = Game.get_all()
     mechanics = Mechanic.get_all()
     return render_template('dashboard.html', categories = categories, \
-        mechanics = mechanics)
+        games = games, mechanics = mechanics)
 
-#@app.route('/admin/register', methods = ['POST'])
-#def register():
+@app.route('/admin/register', methods = ['POST'])
+def register():
 #    if not Admin.validate_new_admin(request.form):
 #        return redirect('/admin')
 #
-#    data = {
-#        'username': request.form['username'],
-#        'password': bcrypt.generate_password_hash(request.form['password']),
-#        'email': request.form['email']
-#    }
-#    session['user_id'] = Admin.insert(data)
-#    return redirect('/admin/dashboard')
+    data = {
+        'username': request.form['username'],
+        'password': bcrypt.generate_password_hash(request.form['password']),
+        'email': request.form['email']
+    }
+    session['user_id'] = Admin.insert(data)
+    return redirect('/admin/dashboard')

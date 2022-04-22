@@ -13,8 +13,19 @@ class Game:
         self.box_art = data['box_art']
         self.create_time = data['create_time']
         self.update_time = data['update_time']
+#        self.mechanics = []
 
 # Get Methods ------------------------------------------------------------------
+
+    @classmethod
+    def get_all(cls):
+        query = 'SELECT * FROM games;'
+        results = connectToMySQL(cls.db).query_db(query)
+        games = []
+        for row in results:
+            games.append(cls(row))
+        return games
+
     @classmethod
     def get_by_name(cls, name):
         data = {'name': name}
